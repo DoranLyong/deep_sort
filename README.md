@@ -26,6 +26,7 @@ Additionally, feature generation requires TensorFlow (>= 1.0).
 * ``` linear_assignment``` in [./deep_sort/linear_assignment.py](https://github.com/DoranLyong/deep_sort/blob/master/deep_sort/linear_assignment.py) is changed:
   * ```sklearn.utils.linear_assignment_``` [is removed in >0.23 ver](https://stackoverflow.com/questions/62390517/no-module-named-sklearn-utils-linear-assignment). 
   * Therefore, ```scipy.optimize.linear_sum_assignment``` [is used for alternative](https://stackoverflow.com/questions/57369848/how-do-i-resolve-use-scipy-optimize-linear-sum-assignment-instead).
+  * It is for implementing the <b>Hungarian algorithm</b>.
 
 ## Installation
 
