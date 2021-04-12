@@ -15,8 +15,15 @@ needed to run the tracker:
 * NumPy
 * sklearn
 * OpenCV
+* scipy
 
 Additionally, feature generation requires TensorFlow (>= 1.0).
+
+
+### ※ fixed parts: 
+* You can run the codes in TensorFlow2 environment 
+  *  The code line is changed from ```import tensorflow as tf ``` to ```import tensorflow.compat.v1 as tf``` in [./tools/generate_detections.py]().
+* ``` linear_assignment``` in [./deep_sort/linear_assignment.py](https://github.com/DoranLyong/deep_sort/blob/master/deep_sort/linear_assignment.py) is changed
 
 ## Installation
 
