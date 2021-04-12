@@ -21,9 +21,11 @@ Additionally, feature generation requires TensorFlow (>= 1.0).
 
 
 ### ※ fixed parts: 
-* You can run the codes in TensorFlow2 environment 
+* You can run the codes in TensorFlow2 environment: 
   *  The code line is changed from ```import tensorflow as tf ``` to ```import tensorflow.compat.v1 as tf``` in [./tools/generate_detections.py]().
-* ``` linear_assignment``` in [./deep_sort/linear_assignment.py](https://github.com/DoranLyong/deep_sort/blob/master/deep_sort/linear_assignment.py) is changed
+* ``` linear_assignment``` in [./deep_sort/linear_assignment.py](https://github.com/DoranLyong/deep_sort/blob/master/deep_sort/linear_assignment.py) is changed:
+  * ```sklearn.utils.linear_assignment_``` [is removed in >0.23 ver](https://stackoverflow.com/questions/62390517/no-module-named-sklearn-utils-linear-assignment). 
+  * Therefore, ```scipy.optimize.linear_sum_assignment``` [is used for alternative](https://stackoverflow.com/questions/57369848/how-do-i-resolve-use-scipy-optimize-linear-sum-assignment-instead).
 
 ## Installation
 
