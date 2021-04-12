@@ -186,6 +186,8 @@ def run(sequence_dir, detection_file, output_file, min_confidence,
         if display:
             image = cv2.imread(
                 seq_info["image_filenames"][frame_idx], cv2.IMREAD_COLOR)
+            cv2.imshow("Original Video", image)
+#            cv2.waitKey(1)
             vis.set_image(image.copy())
             vis.draw_detections(detections)
             vis.draw_trackers(tracker.tracks)
@@ -222,36 +224,16 @@ def parse_args():
     """ Parse command line arguments.
     """
     parser = argparse.ArgumentParser(description="Deep SORT")
-    parser.add_argument(
-        "--sequence_dir", help="Path to MOTChallenge sequence directory",
-        default=None, required=True)
-    parser.add_argument(
-        "--detection_file", help="Path to custom detections.", default=None,
-        required=True)
-    parser.add_argument(
-        "--output_file", help="Path to the tracking output file. This file will"
-        " contain the tracking results on completion.",
-        default="/tmp/hypotheses.txt")
-    parser.add_argument(
-        "--min_confidence", help="Detection confidence threshold. Disregard "
-        "all detections that have a confidence lower than this value.",
-        default=0.8, type=float)
-    parser.add_argument(
-        "--min_detection_height", help="Threshold on the detection bounding "
-        "box height. Detections with height smaller than this value are "
-        "disregarded", default=0, type=int)
-    parser.add_argument(
-        "--nms_max_overlap",  help="Non-maxima suppression threshold: Maximum "
-        "detection overlap.", default=1.0, type=float)
-    parser.add_argument(
-        "--max_cosine_distance", help="Gating threshold for cosine distance "
-        "metric (object appearance).", type=float, default=0.2)
-    parser.add_argument(
-        "--nn_budget", help="Maximum size of the appearance descriptors "
-        "gallery. If None, no budget is enforced.", type=int, default=None)
-    parser.add_argument(
-        "--display", help="Show intermediate tracking results",
-        default=True, type=bool_string)
+    parser.add_argument("--sequence_dir", help="Path to MOTChallenge sequence directory", default="./MOT16/test/MOT16-07")
+    parser.add_argument("--detection_file", help="Path to custom detections.", default="./resources/detections/MOT16_POI_test/MOT16-07.npy")
+    parser.add_argument("--output_file", help="Path to the tracking output file. This file will contain the tracking results on completion.", default="/tmp/hypotheses.txt")
+    parser.add_argument("--min_confidence", help="Detection confidence threshold. Disregard all detections that have a confidence lower than this value.", default=0.3, type=float)
+    parser.add_argument("--min_detection_height", help="Threshold on the detection bounding box height. Detections with height smaller than this value are disregarded", default=0, type=int)
+    parser.add_argument("--nms_max_overlap",  help="Non-maxima suppression threshold: Maximum detection overlap.", default=1.0, type=float)
+    parser.add_argument("--max_cosine_distance", help="Gating threshold for cosine distance metric (object appearance).", type=float, default=0.2)
+    parser.add_argument("--nn_budget", help="Maximum size of the appearance descriptors gallery. If None, no budget is enforced.", type=int, default=100)
+    parser.add_argument("--display", help="Show intermediate tracking results", default=True, type=bool_string)
+    
     return parser.parse_args()
 
 
